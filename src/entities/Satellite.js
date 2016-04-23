@@ -50,10 +50,10 @@ const makeTarget = radius => {
   const geom = new TorusGeometry(radius, 0.25, 10, 100);
   const mat = new MeshLambertMaterial(0xffffff);
   mat.shading = 1;
+  mat.visible = false;
 
   const target = new Mesh(geom, mat);
   target.type = 'selector';
-  target.visible = false;
   target.rotation.x += Math.PI / 2;
 
   return target;
