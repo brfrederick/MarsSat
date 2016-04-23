@@ -4,6 +4,8 @@
   "description": "Repo for our Space Apps 2016 project",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
+    "watch": "webpack --progress --colors --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/brfrederick/SpaceApps2016/issues"
   },
-  "homepage": "https://github.com/brfrederick/SpaceApps2016#readme"
+  "homepage": "https://github.com/brfrederick/SpaceApps2016#readme",
+  "dependencies": {
+    "eslint": "^2.8.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.5.0",
+    "webpack": "^1.13.0"
+  }
 }
