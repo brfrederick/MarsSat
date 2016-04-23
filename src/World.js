@@ -1,8 +1,10 @@
 import R from 'ramda';
 import THREE, { Scene, PerspectiveCamera, WebGLRenderer, Raycaster } from 'three';
 
+import { getAsset } from './AssetManager';
+
 const scene = new Scene();
-const renderer = new WebGLRenderer();
+const renderer = new WebGLRenderer({ antialias: true });
 const satellites = [];
 const raycaster = new Raycaster();
 const mouseCastVector = new THREE.Vector2(0, 0);
@@ -36,8 +38,10 @@ const setupStaticObjs = () => {
   const material = new THREE.MeshPhongMaterial({ color: 0xaa4444 });
   material.shading = 1;
 
-  const sphere = new THREE.Mesh(geometry, material);
-  scene.add(sphere);
+  // const sphere = new THREE.Mesh(geometry, material);
+  // scene.add(sphere);
+  getAsset('/assets/models/planet.json')
+  .then(asset => scene.add(asset));
 
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(1, 1, 1);

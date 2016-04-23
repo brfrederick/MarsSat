@@ -18,6 +18,7 @@ module.exports = {
         test: /\.js$/,
         include: [
           path.resolve('src'),
+          path.resolve('lib'),
         ],
         exclude: /node_modules/,
         loader: 'babel-loader',

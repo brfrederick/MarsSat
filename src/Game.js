@@ -22,7 +22,7 @@ export const init = () => {
   Controls.init(document.getElementById('render_target'));
   clock.start();
 
-  const sat = makeSatellite(6, 10, 0xFF0FFF);
+  const sat = makeSatellite(3, 10, 0xFFFFFF);
   World.addSatellite(sat);
 
   requestAnimationFrame(mainLoop);

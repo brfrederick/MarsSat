@@ -15,7 +15,7 @@ const update = ({ rotation, data }) => dt => {
 * @param {HEX Value} color - color to tint the satellite
 */
 const makeSat = (radius, color) => {
-  const geom = new SphereGeometry(0.25, 8, 8);
+  const geom = new SphereGeometry(0.1, 8, 8);
   const mat = new MeshLambertMaterial({ color });
 
   const sat = new Mesh(geom, mat);
@@ -31,7 +31,7 @@ const makeSat = (radius, color) => {
 * @param {HEX Value} color - color to tint the path torus
 */
 const makePath = (radius, color) => {
-  const geom = new TorusGeometry(radius, 0.04, 10, 100);
+  const geom = new TorusGeometry(radius, 0.01, 10, 100);
   const mat = new MeshLambertMaterial({ color });
   mat.shading = 1;
 
