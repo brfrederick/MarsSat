@@ -1,7 +1,11 @@
-import THREE, { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
+import R from 'ramda';
+import THREE, { Scene, PerspectiveCamera, WebGLRenderer, Raycaster } from 'three';
 
 const scene = new Scene();
 const renderer = new WebGLRenderer();
+const satellites = [];
+const raycaster = new Raycaster();
+const mouseCastVector = new THREE.Vector2(0, 0);
 
 let camera;
 let camHolder;
@@ -12,8 +16,20 @@ export const spinCamera = (x, y, z) => {
   camHolder.rotation.z += z;
 };
 
+export const getIntersects = ({ x, y }) => {
+  mouseCastVector.set(x, y);
+  raycaster.setFromCamera(mouseCastVector, camera);
+  return raycaster
+    .intersectObjects(R.map((s) => s.selector, satellites));
+};
+
 const makeCamera = () =>
   new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+
+export const addSatellite = sat => {
+  scene.add(sat);
+  satellites.push(sat);
+};
 
 const setupStaticObjs = () => {
   const geometry = new THREE.SphereGeometry(5, 20, 20);
@@ -54,6 +70,8 @@ export const render = () => renderer.render(scene, camera);
 export default {
   init,
   render,
+  satellites,
   spinCamera,
-  scene,
+  addSatellite,
+  getIntersects,
 };

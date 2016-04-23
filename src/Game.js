@@ -5,10 +5,9 @@ import Controls from './Controls';
 import { makeSatellite } from './entities/Satellite';
 
 const clock = new Clock();
-const satellites = [];
 
 const update = dt => {
-  satellites.map(s => s.update(dt));
+  World.satellites.map(s => s.update(dt));
 };
 
 const mainLoop = () => {
@@ -24,8 +23,7 @@ export const init = () => {
   clock.start();
 
   const sat = makeSatellite(6, 10, 0xFF0FFF);
-  satellites.push(sat);
-  World.scene.add(sat);
+  World.addSatellite(sat);
 
   requestAnimationFrame(mainLoop);
 };

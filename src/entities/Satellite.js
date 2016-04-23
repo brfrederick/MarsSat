@@ -48,7 +48,7 @@ const makePath = (radius, color) => {
 */
 const makeTarget = radius => {
   const geom = new TorusGeometry(radius, 0.25, 10, 100);
-  const mat = new MeshLambertMaterial(0xffffff);
+  const mat = new MeshLambertMaterial({ color: 0x0fffff, visible: false });
   mat.shading = 1;
   mat.visible = false;
 
