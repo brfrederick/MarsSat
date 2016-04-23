@@ -4,6 +4,13 @@ const scene = new Scene();
 const renderer = new WebGLRenderer();
 
 let camera;
+let camHolder;
+
+export const spinCamera = (x, y, z) => {
+  camHolder.rotation.x += x;
+  camHolder.rotation.y += y;
+  camHolder.rotation.z += z;
+};
 
 const makeCamera = () =>
   new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
@@ -25,7 +32,11 @@ export const init = () => {
   const target = document.getElementById('render_target');
 
   camera = makeCamera();
+  camera.lookAt(new THREE.Vector3());
+  camHolder = new THREE.Object3D();
+  camHolder.add(camera);
   camera.position.z = 20;
+  scene.add(camHolder);
 
   setupStaticObjs();
 
@@ -41,4 +52,5 @@ export const render = () => renderer.render(scene, camera);
 export default {
   init,
   render,
+  spinCamera,
 };
