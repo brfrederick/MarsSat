@@ -53,4 +53,5 @@ export default {
   init,
   render,
   spinCamera,
+  scene,
 };
