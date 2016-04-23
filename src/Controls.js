@@ -29,8 +29,8 @@ const getMouseProjection = (target, mX, mY) => ({
 const mouseMove = (target, { offsetX, offsetY }) => {
   if (rightDown) {
     World.spinCamera(
-      (mousePrev.y - screenY) * 0.01,
-      (mousePrev.x - screenX) * 0.01,
+      (mousePrev.y - offsetY) * 0.01,
+      (mousePrev.x - offsetX) * 0.01,
       0);
   }
   mousePrev.x = offsetX;
