@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --progress --colors --watch",
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "eslint-plugin-import": "^1.5.0",
     "ramda": "^0.21.0",
     "three": "^0.76.1",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
   }
 }
