@@ -23,7 +23,7 @@ export const init = () => {
   Controls.init(document.getElementById('render_target'));
   clock.start();
 
-  const sat = makeSatellite();
+  const sat = makeSatellite(6, 10, 0xFF0FFF);
   satellites.push(sat);
   World.scene.add(sat);
 

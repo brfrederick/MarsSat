@@ -1,41 +1,83 @@
 import { SphereGeometry, TorusGeometry, MeshLambertMaterial, Mesh, Object3D } from 'three';
 
-const geom = new SphereGeometry(0.25, 10, 10);
-const mat = new MeshLambertMaterial({ color: 0xffffff });
-mat.shading = 1;
-
-const pathGeom = new TorusGeometry(6, 0.05, 16, 100);
-const pathMat = new MeshLambertMaterial({ color: 0x0fffff });
-pathMat.shading = 1;
-
-const targetGeom = new TorusGeometry(6, 0.25, 10, 100);
-
+/**
+* Construct a ring to use for selection
+* @param {Orbit} Orbit object to update
+*/
 const update = ({ rotation, data }) => dt => {
   const move = (2 * Math.PI / data.speed) * dt;
   rotation.y += move;
 };
 
-export const makeSatellite = (speed = 10) => {
+/**
+* Construct a satellite object at an offset to make rotating about planet easy
+* @param {Number} radius - radius of orbit
+* @param {HEX Value} color - color to tint the satellite
+*/
+const makeSat = (radius, color) => {
+  const geom = new SphereGeometry(0.25, 8, 8);
+  const mat = new MeshLambertMaterial({ color });
+
   const sat = new Mesh(geom, mat);
-  sat.position.set(6, 0, 0);
+  sat.position.set(radius, 0, 0);
   sat.type = 'Satellite';
 
-  const path = new Mesh(pathGeom, pathMat);
+  return sat;
+};
+
+/**
+* Construct a ring to show the path of a satellite
+* @param {Number} radius - radius of orbit
+* @param {HEX Value} color - color to tint the path torus
+*/
+const makePath = (radius, color) => {
+  const geom = new TorusGeometry(radius, 0.04, 10, 100);
+  const mat = new MeshLambertMaterial({ color });
+  mat.shading = 1;
+
+  const path = new Mesh(geom, mat);
   path.rotation.x += Math.PI / 2;
   path.type = 'Path';
 
-  const target = new Mesh(targetGeom);
+  return path;
+};
+
+/**
+* Construct a ring to use for selection
+* @param {Number} radius - radius of orbit
+*/
+const makeTarget = radius => {
+  const geom = new TorusGeometry(radius, 0.25, 10, 100);
+  const mat = new MeshLambertMaterial(0xffffff);
+  mat.shading = 1;
+
+  const target = new Mesh(geom, mat);
+  target.type = 'selector';
   target.visible = false;
+  target.rotation.x += Math.PI / 2;
+
+  return target;
+};
+
+/**
+* Construct a satellite and supporting objects
+* @param {Number} radius - radius of orbit
+* @param {Number} speed - seconds per rotation
+* @param {HEX} color - color of Satellite
+*/
+export const makeSatellite = (radius, speed = 10, color = 0xffffff) => {
+  const sat = makeSat(radius, color);
+  const path = makePath(radius, color);
+  const target = makeTarget(radius);
 
   const orbit = new Object3D();
   orbit.add(sat);
   orbit.add(path);
   orbit.add(target);
 
-  const data = {
+  orbit.data = {
     speed,
   };
-  orbit.data = data;
 
   const container = new Object3D();
   container.add(orbit);
