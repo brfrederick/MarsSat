@@ -1,7 +1,11 @@
+import { Clock } from 'three';
+
 import World from './World';
 
-const mainLoop = dt => {
-  console.log(dt);
+const clock = new Clock();
+
+const mainLoop = () => {
+  console.log(clock.getDelta());
   World.render();
 
   requestAnimationFrame(mainLoop);
@@ -9,6 +13,8 @@ const mainLoop = dt => {
 
 export const init = () => {
   World.init();
+  clock.start();
+
   requestAnimationFrame(mainLoop);
 };
 

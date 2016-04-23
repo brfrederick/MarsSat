@@ -14,10 +14,11 @@ const setupStaticObjs = () => {
   const sphere = new THREE.Mesh(geometry, material);
   scene.add(sphere);
 
-  const light = new THREE.DirectionalLight(0xffffff, 2);
+  const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(1, 1, 1);
   scene.add(light);
 
+  scene.add(new THREE.AmbientLight(0x444444));
 };
 
 export const init = () => {
