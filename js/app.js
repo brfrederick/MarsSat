@@ -120,13 +120,13 @@
 	    return _World2.default.addSatellite(sat);
 	  });
 
-	  var mission = (0, _Mission.makeMission)('Alpha');
+	  var mission = (0, _Mission.makeMission)('Alpha', 3, 8);
 	  _World2.default.addMission(mission);
 
-	  var mission1 = (0, _Mission.makeMission)('Beta');
+	  var mission1 = (0, _Mission.makeMission)('Beta', 2, 5);
 	  _World2.default.addMission(mission1);
 
-	  var mission2 = (0, _Mission.makeMission)('Charlie');
+	  var mission2 = (0, _Mission.makeMission)('Charlie', 7, 3);
 	  _World2.default.addMission(mission2);
 
 	  window.onresize = _World2.default.resize;
@@ -56633,7 +56633,7 @@
 	  var mission = {
 	    startBlocks: rows * columns,
 	    progress: 0,
-	    timeLeft: 100,
+	    timeLeft: 300,
 	    ui: ui,
 	    target: target,
 	    id: id

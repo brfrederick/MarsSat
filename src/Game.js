@@ -34,13 +34,13 @@ export const init = () => {
   makeSatellite(3, 10, 0xFFFFFF)
     .then((sat) => World.addSatellite(sat));
 
-  const mission = makeMission('Alpha');
+  const mission = makeMission('Alpha', 3, 8);
   World.addMission(mission);
 
-  const mission1 = makeMission('Beta');
+  const mission1 = makeMission('Beta', 2, 5);
   World.addMission(mission1);
 
-  const mission2 = makeMission('Charlie');
+  const mission2 = makeMission('Charlie', 7, 3);
   World.addMission(mission2);
 
   window.onresize = World.resize;

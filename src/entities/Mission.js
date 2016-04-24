@@ -92,7 +92,7 @@ export const makeMission = (id, rows = 2, columns = 5) => {
   const mission = {
     startBlocks: rows * columns,
     progress: 0,
-    timeLeft: 100,
+    timeLeft: 300,
     ui,
     target,
     id,
