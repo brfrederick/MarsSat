@@ -13,7 +13,12 @@ const update = dt => {
   World.missions.map(m => m.update(dt));
 };
 
+const endGame = () => console.log('endIt');
+
 const mainLoop = () => {
+  if (World.fails() >= 3) {
+    endGame();
+  }
   World.render();
   update(clock.getDelta());
 
@@ -31,6 +36,12 @@ export const init = () => {
 
   const mission = makeMission();
   World.addMission(mission);
+
+  const mission1 = makeMission();
+  World.addMission(mission1);
+
+  const mission2 = makeMission();
+  World.addMission(mission2);
 
   window.onresize = World.resize;
 

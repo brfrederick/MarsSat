@@ -1,5 +1,5 @@
 import { Mesh, BoxGeometry, MeshLambertMaterial, Object3D } from 'three';
-import { removeMission, remove } from '../World';
+import { missionPass, missionFail, remove } from '../World';
 
 const geom = new BoxGeometry(0.4, 0.2, 0.2);
 
@@ -42,6 +42,9 @@ const makeTarget = (w, h) => {
     }
   }
 
+  container.rotation.x += Math.random() * Math.PI * 2;
+  container.rotation.y += Math.random() * Math.PI * 2;
+
   return container;
 };
 
@@ -51,11 +54,12 @@ const update = m => dt => {
     // remove UI, mission is complete
     // remove mission from world
     console.log('mission complete');
-    removeMission(m);
+    missionPass(m);
   }
   else if (m.timeLeft <= 0) {
     // -- GAME OVER --
     console.log('=== GAME OVER ===');
+    missionFail(m);
   }
   else {
     // update progress
@@ -84,7 +88,7 @@ export const makeMission = (rows = 2, columns = 5) => {
   const mission = {
     startBlocks: rows * columns,
     progress: 0,
-    timeLeft: 30000,
+    timeLeft: 10,
     ui,
     target,
   };

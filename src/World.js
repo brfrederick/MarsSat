@@ -11,6 +11,8 @@ const mouseCastVector = new THREE.Vector2(0, 0);
 const satellites = [];
 const missions = [];
 
+let score = 0;
+let fails = 0;
 let camera;
 let camHolder;
 
@@ -45,6 +47,17 @@ export const removeMission = mission => {
 
   const index = missions.indexOf(mission);
   missions.splice(index, 1);
+};
+
+export const missionPass = mission => {
+  score++;
+  removeMission(mission);
+};
+
+export const missionFail = mission => {
+  fails++;
+  console.log(fails);
+  removeMission(mission);
 };
 
 const setupStaticObjs = () => {
@@ -103,4 +116,6 @@ export default {
   addMission,
   getIntersects,
   resize,
+  score: () => score,
+  fails: () => fails,
 };
