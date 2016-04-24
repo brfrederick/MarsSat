@@ -51,7 +51,7 @@ const update = m => dt => {
     // remove UI, mission is complete
     // remove mission from world
     console.log('mission complete');
-    removeMission();
+    removeMission(m);
   }
   else if (m.timeLeft <= 0) {
     // -- GAME OVER --

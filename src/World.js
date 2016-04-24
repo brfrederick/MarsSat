@@ -41,7 +41,7 @@ export const addMission = mission => {
 };
 
 export const removeMission = mission => {
-  scene.remove(mission);
+  scene.remove(mission.target);
 
   const index = missions.indexOf(mission);
   missions.splice(index, 1);
