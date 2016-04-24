@@ -67,6 +67,9 @@ const update = m => dt => {
     m.timeLeft -= dt;
     document.querySelector(`#${m.id}progress`)
       .value = Math.round(m.target.blocksDone / m.startBlocks * 100);
+    document.querySelector(`#${m.id}timer`)
+      .innerHTML = m.timeLeft > 0 ?
+        `${Math.floor(m.timeLeft / 60)}:${Math.round(m.timeLeft) % 60}` : '0:00';
     // update UI
   }
 };
@@ -89,7 +92,7 @@ export const makeMission = (id, rows = 2, columns = 5) => {
   const mission = {
     startBlocks: rows * columns,
     progress: 0,
-    timeLeft: 10,
+    timeLeft: 100,
     ui,
     target,
     id,
