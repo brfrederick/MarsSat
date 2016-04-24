@@ -14,16 +14,17 @@ const mouseDown = event => {
   event.preventDefault();
 
   if (isRightButton(event.button)) rightDown = true;
-  else selectedSat = World.getIntersects(mouseProjection);
-
-  selectedSat.selected = true;
+  else {
+    selectedSat = World.getIntersects(mouseProjection);
+    selectedSat.selected = true;
+  }
 };
 
 const mouseUp = event => {
   if (isRightButton(event.button)) {
     rightDown = false;
   }
-  selectedSat.selected = false;
+  if (selectedSat) selectedSat.selected = false;
   selectedSat = null;
 };
 

@@ -1,3 +1,4 @@
+import R from 'ramda';
 import { SphereGeometry, TorusGeometry, MeshLambertMaterial, Mesh, Object3D, Vector3 } from 'three';
 
 const unselectedMat = new MeshLambertMaterial({ color: 0x0fffff, visible: false });
@@ -65,6 +66,21 @@ const makeTarget = radius => {
   return target;
 };
 
+export const getObjectiveCollisions = (sat, objectives) => {
+  const satScan = new Vector3();
+  satScan.copy(sat.position);
+  satScan.localToWorld();
+  satScan.multiplyScalar(2.2 / 3);
+
+  const objPos = new Vector3();
+  return R.filter(o => {
+    objPos.copy(o.position);
+    objPos.localToWorld();
+
+    return (satScan.distanceTo(objPos) < 0.3);
+  }, objectives);
+};
+
 /**
 * Construct a satellite and supporting objects
 * @param {Number} radius - radius of orbit
@@ -89,6 +105,7 @@ export const makeSatellite = (radius, speed = 10, color = 0xffffff) => {
   container.add(orbit);
   container.update = update(orbit);
   container.selector = target;
+  container.sat = sat;
   container.rotTarget = new Vector3(0, 0, 0);
   target.parent = container;
   orbit.parent = container;
