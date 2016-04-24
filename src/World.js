@@ -3,6 +3,8 @@ import THREE, { Scene, PerspectiveCamera, WebGLRenderer, Raycaster } from 'three
 
 import { getAsset } from './AssetManager';
 
+const renderDOM = document.getElementById('render_container');
+
 const scene = new Scene();
 const renderer = new WebGLRenderer({ antialias: true });
 const raycaster = new Raycaster();
@@ -30,7 +32,7 @@ export const getIntersects = ({ x, y }) => {
 };
 
 const makeCamera = () =>
-  new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+  new PerspectiveCamera(45, renderDOM.clientWidth / renderDOM.clientHeight, 1, 1000);
 
 export const addSatellite = sat => {
   scene.add(sat);
@@ -69,7 +71,7 @@ const setupStaticObjs = () => {
   .then(asset => {
     asset.position.y -= 2.2;
     asset.scale.set(5.7, 5.7, 5.7);
-    scene.add(asset)
+    scene.add(asset);
   });
 
   const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -79,14 +81,25 @@ const setupStaticObjs = () => {
   scene.add(new THREE.AmbientLight(0x444444));
 };
 
+export const resize = () => {
+  camera.aspect = renderDOM.clientWidth / renderDOM.clientHeight;
+  camera.left = renderDOM.clientWidth / -32;
+  camera.right = renderDOM.clientWidth / 32;
+  camera.top = renderDOM.clientHeight / 32;
+  camera.bottom = renderDOM.clientHeight / -32;
+  camera.updateProjectionMatrix();
+  renderer.setSize(renderDOM.clientWidth, renderDOM.clientHeight);
+};
+
+export const render = () => renderer.render(scene, camera);
+
 export const init = () => {
-  const target = document.getElementById('render_target');
 
   camera = makeCamera();
   camera.lookAt(new THREE.Vector3());
   camHolder = new THREE.Object3D();
   camHolder.add(camera);
-  camera.position.z = 20;
+  camera.position.z = 10;
   scene.add(camHolder);
 
   setupStaticObjs();
@@ -94,21 +107,10 @@ export const init = () => {
   // Set render options
   renderer.setClearColor(0x000000);
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  target.appendChild(renderer.domElement);
+  renderer.setSize(renderDOM.clientWidth, renderDOM.clientHeight);
+  document.querySelector('#render_target').appendChild(renderer.domElement);
 };
 
-export const render = () => renderer.render(scene, camera);
-
-export const resize = () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.left = window.innerWidth / -32;
-  camera.right = window.innerWidth / 32;
-  camera.top = window.innerHeight / 32;
-  camera.bottom = window.innerHeight / -32;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-};
 
 export default {
   init,
