@@ -32,8 +32,9 @@ const makeTarget = (w, h) => {
       const mesh = new Mesh(geom, mat);
       mesh.position.set(2.2, 0, 0);
       mesh.remove = () => {
-        container.blocks.remove(mesh);
-        remove(mesh);
+        const index = container.blocks.indexOf(mesh);
+        container.blocks.splice(index, 1);
+        container.remove(pivot);
       };
 
       container.blocks.push(mesh);
@@ -51,6 +52,7 @@ const update = m => dt => {
     // remove UI, mission is complete
     // remove mission from world
     console.log('mission complete');
+    removeMission();
   }
   else if (m.timeLeft <= 0) {
     // -- GAME OVER --
@@ -62,7 +64,6 @@ const update = m => dt => {
     m.timeLeft -= dt;
 
     // update UI
-    console.log(m.timeLeft);
   }
 };
 

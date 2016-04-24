@@ -9,8 +9,6 @@ const clock = new Clock();
 
 const update = dt => {
   World.satellites.map(s => s.update(dt));
-  getObjectiveCollisions(World.satellites[0].sat, World.missions[0].blocks);
-
   World.missions.map(m => m.update(dt));
 };
 

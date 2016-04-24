@@ -1,22 +1,40 @@
 import R from 'ramda';
 import { SphereGeometry, TorusGeometry, MeshLambertMaterial, Mesh, Object3D, Vector3 } from 'three';
+import World from '../World';
 
 const unselectedMat = new MeshLambertMaterial({ color: 0x0fffff, visible: false });
 const selectedMat = new MeshLambertMaterial({ color: 0x0fffff });
 unselectedMat.shading = 1;
 selectedMat.shading = 1;
+
+export const getObjectiveCollisions = (sat, objectives) => {
+  const satScan = new Vector3();
+  sat.localToWorld(satScan);
+  satScan.multiplyScalar(2.2 / 3);
+
+  const objPos = new Vector3();
+  return (R.filter(o => {
+    o.localToWorld(objPos);
+    return (satScan.distanceTo(objPos) < 1);
+  }, objectives));
+};
+
 /**
 * Construct a ring to use for selection
+* @param {satellite}
 * @param {Orbit} Orbit object to update
 */
-const update = ({ rotation, data, parent }) => dt => {
-  const move = (2 * Math.PI / data.speed) * dt;
-  rotation.y += move;
-  if (parent.selected) parent.selector.material = selectedMat;
-  else parent.selector.material = unselectedMat;
+const update = s => dt => {
+  const move = (2 * Math.PI / s.data.speed) * dt;
+  s.rotation.y += move;
+  if (s.parent.selected) s.parent.selector.material = selectedMat;
+  else s.parent.selector.material = unselectedMat;
 
-  parent.rotation.x = parent.rotTarget.x;
-  parent.rotation.y = parent.rotTarget.y;
+  s.parent.rotation.x = s.parent.rotTarget.x;
+  s.parent.rotation.y = s.parent.rotTarget.y;
+
+  const hits = World.missions.map(m => getObjectiveCollisions(s, m.blocks))[0];
+  (hits || []).map(block => block.remove());
 };
 
 /**
@@ -64,18 +82,6 @@ const makeTarget = radius => {
   target.rotation.x += Math.PI / 2;
 
   return target;
-};
-
-export const getObjectiveCollisions = (sat, objectives) => {
-  const satScan = new Vector3();
-  sat.localToWorld(satScan);
-  satScan.multiplyScalar(2.2 / 3);
-
-  const objPos = new Vector3();
-  return R.filter(o => {
-    o.localToWorld(objPos);
-    return (satScan.distanceTo(objPos) < 1);
-  }, objectives);
 };
 
 /**

@@ -42,7 +42,9 @@ export const addMission = mission => {
 
 export const removeMission = mission => {
   scene.remove(mission);
-  missions.remove(mission);
+
+  const index = missions.indexOf(mission);
+  missions.splice(index, 1);
 };
 
 const setupStaticObjs = () => {
@@ -93,8 +95,6 @@ export const resize = () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 };
 
-export const remove = obj => scene.remove(obj);
-
 export default {
   init,
   render,
@@ -105,5 +105,4 @@ export default {
   addMission,
   getIntersects,
   resize,
-  remove,
 };
