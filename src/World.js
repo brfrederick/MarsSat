@@ -66,7 +66,11 @@ const setupStaticObjs = () => {
   material.shading = 1;
 
   getAsset('/assets/models/planet.json')
-  .then(asset => scene.add(asset));
+  .then(asset => {
+    asset.position.y -= 2.2;
+    asset.scale.set(5.7, 5.7, 5.7);
+    scene.add(asset)
+  });
 
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(1, 1, 1);
