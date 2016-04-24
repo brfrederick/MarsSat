@@ -1,12 +1,21 @@
-import { SphereGeometry, TorusGeometry, MeshLambertMaterial, Mesh, Object3D } from 'three';
+import { SphereGeometry, TorusGeometry, MeshLambertMaterial, Mesh, Object3D, Vector3 } from 'three';
 
+const unselectedMat = new MeshLambertMaterial({ color: 0x0fffff, visible: false });
+const selectedMat = new MeshLambertMaterial({ color: 0x0fffff });
+unselectedMat.shading = 1;
+selectedMat.shading = 1;
 /**
 * Construct a ring to use for selection
 * @param {Orbit} Orbit object to update
 */
-const update = ({ rotation, data }) => dt => {
+const update = ({ rotation, data, parent }) => dt => {
   const move = (2 * Math.PI / data.speed) * dt;
   rotation.y += move;
+  if (parent.selected) parent.selector.material = selectedMat;
+  else parent.selector.material = unselectedMat;
+
+  parent.rotation.x = parent.rotTarget.x;
+  parent.rotation.y = parent.rotTarget.y;
 };
 
 /**
@@ -48,11 +57,8 @@ const makePath = (radius, color) => {
 */
 const makeTarget = radius => {
   const geom = new TorusGeometry(radius, 0.25, 10, 100);
-  const mat = new MeshLambertMaterial({ color: 0x0fffff, visible: false });
-  mat.shading = 1;
-  mat.visible = false;
 
-  const target = new Mesh(geom, mat);
+  const target = new Mesh(geom, unselectedMat);
   target.type = 'selector';
   target.rotation.x += Math.PI / 2;
 
@@ -83,7 +89,9 @@ export const makeSatellite = (radius, speed = 10, color = 0xffffff) => {
   container.add(orbit);
   container.update = update(orbit);
   container.selector = target;
+  container.rotTarget = new Vector3(0, 0, 0);
   target.parent = container;
+  orbit.parent = container;
 
   return container;
 };

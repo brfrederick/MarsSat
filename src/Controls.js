@@ -15,12 +15,15 @@ const mouseDown = event => {
 
   if (isRightButton(event.button)) rightDown = true;
   else selectedSat = World.getIntersects(mouseProjection);
+
+  selectedSat.selected = true;
 };
 
 const mouseUp = event => {
   if (isRightButton(event.button)) {
     rightDown = false;
   }
+  selectedSat.selected = false;
   selectedSat = null;
 };
 
@@ -37,8 +40,8 @@ const mouseMove = (target, { offsetX, offsetY }) => {
       0);
   }
   else if (selectedSat) {
-    selectedSat.rotation.x -= (mousePrev.y - offsetY) * 0.01;
-    selectedSat.rotation.y += (mousePrev.x - offsetX) * 0.01;
+    selectedSat.rotTarget.x -= (mousePrev.y - offsetY) * 0.01;
+    selectedSat.rotTarget.y += (mousePrev.x - offsetX) * 0.01;
   }
   mousePrev.x = offsetX;
   mousePrev.y = offsetY;
