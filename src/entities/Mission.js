@@ -65,7 +65,8 @@ const update = m => dt => {
     // update progress
     // update time left
     m.timeLeft -= dt;
-
+    document.querySelector(`#${m.id}progress`)
+      .value = Math.round(m.target.blocksDone / m.startBlocks * 100);
     // update UI
   }
 };
@@ -74,7 +75,7 @@ const makeUI = () => {
 
 };
 
-export const makeMission = (rows = 2, columns = 5) => {
+export const makeMission = (id, rows = 2, columns = 5) => {
   // make game objects
   const target = makeTarget(rows, columns);
   target.rotation.y -= Math.PI / 2;
@@ -91,6 +92,7 @@ export const makeMission = (rows = 2, columns = 5) => {
     timeLeft: 10,
     ui,
     target,
+    id,
   };
 
   target.update = update(mission);
