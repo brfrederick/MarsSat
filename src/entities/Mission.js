@@ -60,7 +60,8 @@ const makeUI = numBlocks => {
 export const makeMission = (rows = 2, columns = 5) => {
   // make game objects
   const target = makeTarget(rows, columns);
-
+  target.rotation.y -= Math.PI / 2;
+  target.rotation.x += Math.PI / 4;
   // make ui elements
   // makeUI(rows * columns);
 

@@ -9,12 +9,12 @@ const clock = new Clock();
 
 const update = dt => {
   World.satellites.map(s => s.update(dt));
-  //this brax getObjectiveCollisions(World.satellites[0].sat, World.missions[0].blocks);
+  console.log(getObjectiveCollisions(World.satellites[0].sat, World.missions[0].blocks));
 };
 
 const mainLoop = () => {
-  update(clock.getDelta());
   World.render();
+  update(clock.getDelta());
 
   requestAnimationFrame(mainLoop);
 };
