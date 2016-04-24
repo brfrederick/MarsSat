@@ -83,6 +83,7 @@ export const makeSatellite = (radius, speed = 10, color = 0xffffff) => {
   container.add(orbit);
   container.update = update(orbit);
   container.selector = target;
+  target.parent = container;
 
   return container;
 };

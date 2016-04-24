@@ -3,6 +3,8 @@ import R from 'ramda';
 import World from './World';
 
 let rightDown = false;
+let selectedSat = null;
+
 const mousePrev = { x: 0, y: 0 };
 let mouseProjection = { x: 0, y: 0 };
 
@@ -12,13 +14,14 @@ const mouseDown = event => {
   event.preventDefault();
 
   if (isRightButton(event.button)) rightDown = true;
-  else console.log(World.getIntersects(mouseProjection));
+  else selectedSat = World.getIntersects(mouseProjection);
 };
 
 const mouseUp = event => {
   if (isRightButton(event.button)) {
     rightDown = false;
   }
+  selectedSat = null;
 };
 
 const getMouseProjection = (target, mX, mY) => ({
@@ -32,6 +35,10 @@ const mouseMove = (target, { offsetX, offsetY }) => {
       (mousePrev.y - offsetY) * 0.01,
       (mousePrev.x - offsetX) * 0.01,
       0);
+  }
+  else if (selectedSat) {
+    selectedSat.rotation.x -= (mousePrev.y - offsetY) * 0.01;
+    selectedSat.rotation.y += (mousePrev.x - offsetX) * 0.01;
   }
   mousePrev.x = offsetX;
   mousePrev.y = offsetY;

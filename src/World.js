@@ -22,7 +22,7 @@ export const getIntersects = ({ x, y }) => {
   mouseCastVector.set(x, y);
   raycaster.setFromCamera(mouseCastVector, camera);
   return raycaster
-    .intersectObjects(R.map((s) => s.selector, satellites));
+    .intersectObjects(R.map((s) => s.selector, satellites))[0].object.parent;
 };
 
 const makeCamera = () =>
