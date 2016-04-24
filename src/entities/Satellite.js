@@ -14,7 +14,7 @@ export const getObjectiveCollisions = (sat, objectives) => {
 
   const objPos = new Vector3();
   return (R.filter(o => {
-    o.localToWorld(objPos);
+    objPos.setFromMatrixPosition(o.matrixWorld);
     return (satScan.distanceTo(objPos) < 0.2);
   }, objectives));
 };

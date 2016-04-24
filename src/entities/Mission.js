@@ -5,10 +5,12 @@ const geom = new BoxGeometry(0.4, 0.2, 0.2);
 
 const makeTarget = (w, h) => {
   const mat = new MeshLambertMaterial({ color: 0x0055FF });
+  const completeMat = new MeshLambertMaterial({ color: 0x00AA00 });
   mat.shading = 1;
 
   const container = new Object3D();
   container.blocks = [];
+  container.blocksDone = 0;
 
   let zOffset = 0;
   let yOffset = 0;
@@ -28,9 +30,10 @@ const makeTarget = (w, h) => {
       const mesh = new Mesh(geom, mat);
       mesh.position.set(2.2, 0, 0);
       mesh.remove = () => {
-        const index = container.blocks.indexOf(mesh);
-        container.blocks.splice(index, 1);
-        container.remove(pivot);
+        if (mesh.material !== completeMat) {
+          container.blocksDone++;
+          mesh.material = completeMat;
+        }
       };
 
       container.blocks.push(mesh);
@@ -44,7 +47,7 @@ const makeTarget = (w, h) => {
 
 // m : mission
 const update = m => dt => {
-  if (m.target.blocks.length === 0) {
+  if (m.target.blocks.length <= m.target.blocksDone) {
     // remove UI, mission is complete
     // remove mission from world
     console.log('mission complete');
