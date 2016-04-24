@@ -1,12 +1,16 @@
 .menu-container
-  .menu-header: span.h1.is-red MarsSat
+  .menu-header(style="padding-top:16px")
+    image(src="/assets/images/logo.png" style="padding-right: 8px")
+    span.h1.is-red MarsSat
+    
+    
   .menu-area.vh-10
     span.h2 Satellite Garage
     hr
     #sat-1.sat-button.has-sat  
     #sat-2.sat-button.no-sat  
     #sat-3.sat-button.no-sat  
-    span.upgrade UPGRADE
+    span.upgrade.is-disabled UPGRADE
   div
   .menu-area
     .h2 Colony Missions

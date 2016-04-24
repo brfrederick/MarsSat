@@ -8,6 +8,7 @@ html
       body {
         height: 100vh;
         overflow:hidden;
+        background-color: #EAE0D4;
       }
       
       #content .column {
@@ -32,6 +33,7 @@ html
         min-width: 400px;
         background-color: #EAE0D4;
         font-family: 'Roboto', sans-serif;
+        padding-top:10px;
       }
       .menu-header {
       height: 8vh;
@@ -39,7 +41,6 @@ html
       .menu-container {
       padding-left: 32px;
       padding-right: 32px;
-      padding-top: 32px;
       }
       .is-red {
       color: #CC3D41;
@@ -82,16 +83,18 @@ html
       border-radius: 50%;
       }
       .upgrade {
-      background-color: #745FAA;
+      background-color: #ccc1b4;
       color: #FFFFFF;
       max-height: 40px;
       font-size: 20px;
       font-weight: 900;
       border-radius: 25px;
+      
       padding-left: 31px;
       padding-right: 31px;
       padding-top: 6px;
       padding-bottom: 14px;
+      
       float: right;
       }
       .upgrade:hover {
@@ -107,6 +110,24 @@ html
       .vh-10 { height: 10vh; }
       .vh-50 { height: 50vh; }
       .vh-60 { height: 60vh; }
+        
+      .colony-card {
+        background-color: #ccc1b4;
+      }
+      
+      .colony-card > .timer {
+        // display:none;
+      }
+      
+      .colony-card .active {
+        background-color: #e94e4a;
+      }
+      
+      .colony-card .active > .timer {
+        display: block;
+      }
+      
+
   body(style='margin: 0px; padding: 0px; position: relative;')
     #content.columns
       #menu-bar.column.is-one-quarter: include ./components/menubar.jade
