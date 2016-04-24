@@ -30,6 +30,7 @@ export const init = () => {
   const mission = makeMission();
   World.addMission(mission);
 
+  window.onresize = World.resize;
   requestAnimationFrame(mainLoop);
 };
 

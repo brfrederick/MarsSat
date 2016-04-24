@@ -78,6 +78,16 @@ export const init = () => {
 
 export const render = () => renderer.render(scene, camera);
 
+export const resize = () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.left = window.innerWidth / -32;
+  camera.right = window.innerWidth / 32;
+  camera.top = window.innerHeight / 32;
+  camera.bottom = window.innerHeight / -32;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+};
+
 export default {
   init,
   render,
@@ -87,4 +97,5 @@ export default {
   addSatellite,
   addMission,
   getIntersects,
+  resize,
 };
