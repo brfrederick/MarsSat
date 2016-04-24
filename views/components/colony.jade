@@ -5,7 +5,6 @@ mixin colony-card(name)
       .media-content
         p.title(style="margin-bottom:5px;") Colony #{ name }
         p.subtitle(style="font-size: 90%; display: inline;") IMAGING IN PROGRESS 
-        span 86%
       .media-right
         i.fa.fa-crosshairs
     
@@ -13,6 +12,9 @@ mixin colony-card(name)
       hr(style="margin-bottom:10px")
       
       .columns
+        .column(style="display:none")
+          p(style="display:inline") TIME: 
+          span.time-val(id=name + "timer") 3:14
         
         .column.is-fullwidth
           progress.progress(id=name + "progress" value='15', max='100', style='margin-top: 3px')
