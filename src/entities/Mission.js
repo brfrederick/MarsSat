@@ -78,6 +78,7 @@ export const makeMission = (rows = 2, columns = 5) => {
   target.rotation.x += Math.PI / 4;
 
   // make ui elements
+  target.rotation.x += Math.PI / 4;
   const ui = makeUI(rows * columns);
 
   const mission = {
