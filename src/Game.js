@@ -1,5 +1,6 @@
 import { Clock } from 'three';
 
+import { getAsset } from './AssetManager';
 import World from './World';
 import Controls from './Controls';
 import { makeSatellite, getObjectiveCollisions } from './entities/Satellite';
@@ -13,14 +14,15 @@ const update = dt => {
 };
 
 const mainLoop = () => {
-  update(clock.getDelta());
   World.render();
+  update(clock.getDelta());
 
   requestAnimationFrame(mainLoop);
 };
 
 export const init = () => {
   World.init();
+
   Controls.init(document.getElementById('render_target'));
   clock.start();
 
@@ -31,6 +33,7 @@ export const init = () => {
   World.addMission(mission);
 
   window.onresize = World.resize;
+
   requestAnimationFrame(mainLoop);
 };
 

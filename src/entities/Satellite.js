@@ -33,8 +33,8 @@ const update = s => dt => {
   s.parent.rotation.x = s.parent.rotTarget.x;
   s.parent.rotation.y = s.parent.rotTarget.y;
 
-  const hits = World.missions.map(m => getObjectiveCollisions(s, m.blocks))[0];
-  (hits || []).map(block => block.remove());
+  const hits = World.missions.map(m => getObjectiveCollisions(s, m.blocks));
+  hits.forEach(blocks => blocks.map(block => block.remove()));
 };
 
 /**

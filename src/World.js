@@ -52,8 +52,6 @@ const setupStaticObjs = () => {
   const material = new THREE.MeshPhongMaterial({ color: 0xaa4444 });
   material.shading = 1;
 
-  // const sphere = new THREE.Mesh(geometry, material);
-  // scene.add(sphere);
   getAsset('/assets/models/planet.json')
   .then(asset => scene.add(asset));
 

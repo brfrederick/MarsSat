@@ -1,11 +1,7 @@
 import { Mesh, BoxGeometry, MeshLambertMaterial, Object3D } from 'three';
 import { removeMission, remove } from '../World';
 
-const geom = new BoxGeometry(0.3, 0.2, 0.2);
-
-const removeBlock = block => () => {
-
-};
+const geom = new BoxGeometry(0.4, 0.2, 0.2);
 
 const makeTarget = (w, h) => {
   const mat = new MeshLambertMaterial({ color: 0x0055FF });
@@ -74,6 +70,9 @@ const makeUI = () => {
 export const makeMission = (rows = 2, columns = 5) => {
   // make game objects
   const target = makeTarget(rows, columns);
+  target.rotation.y -= Math.PI / 2;
+  // target.rotation.z += Math.PI;
+  target.rotation.x += Math.PI / 4;
 
   // make ui elements
   const ui = makeUI(rows * columns);
