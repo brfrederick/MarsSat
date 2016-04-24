@@ -31,8 +31,8 @@ export const init = () => {
   Controls.init(document.getElementById('render_target'));
   clock.start();
 
-  const sat = makeSatellite(3, 10, 0xFFFFFF);
-  World.addSatellite(sat);
+  makeSatellite(3, 10, 0xFFFFFF)
+    .then((sat) => World.addSatellite(sat));
 
   const mission = makeMission('Alpha');
   World.addMission(mission);

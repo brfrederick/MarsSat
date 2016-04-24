@@ -1,6 +1,7 @@
 import R from 'ramda';
 import { SphereGeometry, TorusGeometry, MeshLambertMaterial, Mesh, Object3D, Vector3 } from 'three';
 import World from '../World';
+import { getAsset } from '../AssetManager';
 
 const unselectedMat = new MeshLambertMaterial({ color: 0x0fffff, visible: false });
 const selectedMat = new MeshLambertMaterial({ color: 0x0fffff });
@@ -42,16 +43,18 @@ const update = s => dt => {
 * @param {Number} radius - radius of orbit
 * @param {HEX Value} color - color to tint the satellite
 */
-const makeSat = (radius, color) => {
-  const geom = new SphereGeometry(0.1, 8, 8);
-  const mat = new MeshLambertMaterial({ color });
+const makeSat = (radius) =>
+  getAsset('/assets/models/satellite.json')
+    .then(asset => {
+      const sat = asset;
+      sat.position.set(radius, 0, 0);
+      sat.type = 'Satellite';
+      sat.rotation.z += Math.PI / 2;
+      sat.rotation.y -= Math.PI / 3;
+      sat.scale.set(0.3, 0.3, 0.3);
 
-  const sat = new Mesh(geom, mat);
-  sat.position.set(radius, 0, 0);
-  sat.type = 'Satellite';
-
-  return sat;
-};
+      return sat;
+    });
 
 /**
 * Construct a ring to show the path of a satellite
@@ -90,29 +93,30 @@ const makeTarget = radius => {
 * @param {Number} speed - seconds per rotation
 * @param {HEX} color - color of Satellite
 */
-export const makeSatellite = (radius, speed = 10, color = 0xffffff) => {
-  const sat = makeSat(radius, color);
-  const path = makePath(radius, color);
-  const target = makeTarget(radius);
+export const makeSatellite = (radius, speed = 10, color = 0xffffff) =>
+  makeSat(radius, color)
+    .then(sat => {
+      const path = makePath(radius, color);
+      const target = makeTarget(radius);
 
-  const orbit = new Object3D();
-  orbit.add(sat);
-  orbit.add(path);
-  orbit.add(target);
-  orbit.sat = sat;
+      const orbit = new Object3D();
+      orbit.add(sat);
+      orbit.add(path);
+      orbit.add(target);
+      orbit.sat = sat;
 
-  orbit.data = {
-    speed,
-  };
+      orbit.data = {
+        speed,
+      };
 
-  const container = new Object3D();
-  container.add(orbit);
-  container.update = update(orbit);
-  container.selector = target;
-  container.sat = sat;
-  container.rotTarget = new Vector3(0, 0, 0);
-  target.parent = container;
-  orbit.parent = container;
+      const container = new Object3D();
+      container.add(orbit);
+      container.update = update(orbit);
+      container.selector = target;
+      container.sat = sat;
+      container.rotTarget = new Vector3(0, 0, 0);
+      target.parent = container;
+      orbit.parent = container;
 
-  return container;
-};
+      return container;
+    });
