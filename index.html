@@ -1,6 +1,7 @@
 <!DOCTYPE html><html><head><link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.23/css/bulma.min.css" rel="stylesheet"><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css"><style>body {
   height: 100vh;
   overflow:hidden;
+  background-color: #EAE0D4;
 }
 
 #content .column {
@@ -25,6 +26,7 @@
   min-width: 400px;
   background-color: #EAE0D4;
   font-family: 'Roboto', sans-serif;
+  padding-top:10px;
 }
 .menu-header {
 height: 8vh;
@@ -32,7 +34,6 @@ height: 8vh;
 .menu-container {
 padding-left: 32px;
 padding-right: 32px;
-padding-top: 32px;
 }
 .is-red {
 color: #CC3D41;
@@ -75,16 +76,18 @@ background-color: #303030;
 border-radius: 50%;
 }
 .upgrade {
-background-color: #745FAA;
+background-color: #ccc1b4;
 color: #FFFFFF;
 max-height: 40px;
 font-size: 20px;
 font-weight: 900;
 border-radius: 25px;
+
 padding-left: 31px;
 padding-right: 31px;
 padding-top: 6px;
 padding-bottom: 14px;
+
 float: right;
 }
 .upgrade:hover {
@@ -99,4 +102,22 @@ overflow-y: scroll;
 }
 .vh-10 { height: 10vh; }
 .vh-50 { height: 50vh; }
-.vh-60 { height: 60vh; }</style></head><body style="margin: 0px; padding: 0px; position: relative;"><div id="content" class="columns"><div id="menu-bar" class="column is-one-quarter"><div class="menu-container"><div class="menu-header"><span class="h1 is-red">MarsSat</span></div><div class="menu-area vh-10"><span class="h2">Satellite Garage</span><hr><div id="sat-1" class="sat-button has-sat"> </div><div id="sat-2" class="sat-button no-sat"> </div><div id="sat-3" class="sat-button no-sat"> </div><span class="upgrade">UPGRADE</span></div><div></div><div class="menu-area"><div class="h2">Colony Missions</div><hr><div style="padding-right:10px; margin-right: -20px" class="mission-cards vh-60"><div id="Alpha" class="colony-card box is-fullwidth"><div style="" class="media"> <div class="media-content"><p style="margin-bottom:5px;" class="title">Colony Alpha</p><p style="font-size: 90%; display: inline;" class="subtitle">IMAGING IN PROGRESS </p><span>86%</span></div><div class="media-right"><i class="fa fa-crosshairs"></i></div></div><div style="height: 20px" class="timer"><hr style="margin-bottom:10px"><div class="columns"><div class="column is-one-quarter"><p style="display:inline">TIME: </p><span id="Alphatimer" class="time-val">3:14</span></div><div class="column is-three-quarters"><progress id="Alphaprogress" value="15" max="100" style="margin-top: 3px" class="progress"></progress></div></div></div></div><div id="Beta" class="colony-card box is-fullwidth"><div style="" class="media"> <div class="media-content"><p style="margin-bottom:5px;" class="title">Colony Beta</p><p style="font-size: 90%; display: inline;" class="subtitle">IMAGING IN PROGRESS </p><span>86%</span></div><div class="media-right"><i class="fa fa-crosshairs"></i></div></div><div style="height: 20px" class="timer"><hr style="margin-bottom:10px"><div class="columns"><div class="column is-one-quarter"><p style="display:inline">TIME: </p><span id="Betatimer" class="time-val">3:14</span></div><div class="column is-three-quarters"><progress id="Betaprogress" value="15" max="100" style="margin-top: 3px" class="progress"></progress></div></div></div></div><div id="Charlie" class="colony-card box is-fullwidth"><div style="" class="media"> <div class="media-content"><p style="margin-bottom:5px;" class="title">Colony Charlie</p><p style="font-size: 90%; display: inline;" class="subtitle">IMAGING IN PROGRESS </p><span>86%</span></div><div class="media-right"><i class="fa fa-crosshairs"></i></div></div><div style="height: 20px" class="timer"><hr style="margin-bottom:10px"><div class="columns"><div class="column is-one-quarter"><p style="display:inline">TIME: </p><span id="Charlietimer" class="time-val">3:14</span></div><div class="column is-three-quarters"><progress id="Charlieprogress" value="15" max="100" style="margin-top: 3px" class="progress"></progress></div></div></div></div></div></div></div></div><div id="render_container" class="column is-three-quarters"><div id="render_target" oncontextmenu="return false;"></div></div></div><script src="https://rawgithub.com/brfrederick/SpaceApps2016/gh-pages/js/app.js"></script></body></html>
+.vh-60 { height: 60vh; }
+  
+.colony-card {
+  background-color: #ccc1b4;
+}
+
+.colony-card > .timer {
+  // display:none;
+}
+
+.colony-card .active {
+  background-color: #e94e4a;
+}
+
+.colony-card .active > .timer {
+  display: block;
+}
+
+</style></head><body style="margin: 0px; padding: 0px; position: relative;"><div id="content" class="columns"><div id="menu-bar" class="column is-one-quarter"><div class="menu-container"><div style="padding-top:16px" class="menu-header"><image src="/SpaceApps2016/assets/images/logo.png" style="padding-right: 8px"></image><span class="h1 is-red">MarsSat</span></div><div class="menu-area vh-10"><span class="h2">Satellite Garage</span><hr><div id="sat-1" class="sat-button has-sat"> </div><div id="sat-2" class="sat-button no-sat"> </div><div id="sat-3" class="sat-button no-sat"> </div><span class="upgrade is-disabled">UPGRADE</span></div><div></div><div class="menu-area"><div class="h2">Colony Missions</div><hr><div style="padding-right:10px; margin-right: -20px" class="mission-cards vh-60"><div id="name" class="colony-card box is-fullwidth active"><div style="" class="media"> <div class="media-content"><p style="margin-bottom:5px;" class="title">Colony Alpha</p><p style="font-size: 90%; display: inline;" class="subtitle">IMAGING IN PROGRESS </p><span>86%</span></div><div class="media-right"><i class="fa fa-crosshairs"></i></div></div><div style="height: 20px" class="timer"><hr style="margin-bottom:10px"><div class="columns"><div class="column is-one-quarter"><p style="display:inline">TIME: </p><span id="Alphatimer" class="time-val">3:14</span></div><div class="column is-three-quarters"><progress id="Alphaprogress" value="15" max="100" style="margin-top: 3px" class="progress"></progress></div></div></div></div><div id="name" class="colony-card box is-fullwidth active"><div style="" class="media"> <div class="media-content"><p style="margin-bottom:5px;" class="title">Colony Beta</p><p style="font-size: 90%; display: inline;" class="subtitle">IMAGING IN PROGRESS </p><span>86%</span></div><div class="media-right"><i class="fa fa-crosshairs"></i></div></div><div style="height: 20px" class="timer"><hr style="margin-bottom:10px"><div class="columns"><div class="column is-one-quarter"><p style="display:inline">TIME: </p><span id="Betatimer" class="time-val">3:14</span></div><div class="column is-three-quarters"><progress id="Betaprogress" value="15" max="100" style="margin-top: 3px" class="progress"></progress></div></div></div></div><div id="name" class="colony-card box is-fullwidth active"><div style="" class="media"> <div class="media-content"><p style="margin-bottom:5px;" class="title">Colony Charlie</p><p style="font-size: 90%; display: inline;" class="subtitle">IMAGING IN PROGRESS </p><span>86%</span></div><div class="media-right"><i class="fa fa-crosshairs"></i></div></div><div style="height: 20px" class="timer"><hr style="margin-bottom:10px"><div class="columns"><div class="column is-one-quarter"><p style="display:inline">TIME: </p><span id="Charlietimer" class="time-val">3:14</span></div><div class="column is-three-quarters"><progress id="Charlieprogress" value="15" max="100" style="margin-top: 3px" class="progress"></progress></div></div></div></div></div></div></div></div><div id="render_container" class="column is-three-quarters"><div id="render_target" oncontextmenu="return false;"></div></div></div><script src="/SpaceApps2016/js/app.js"></script></body></html>
