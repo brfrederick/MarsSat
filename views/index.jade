@@ -107,6 +107,24 @@ html
       .vh-10 { height: 10vh; }
       .vh-50 { height: 50vh; }
       .vh-60 { height: 60vh; }
+        
+      .colony-card {
+        background-color: #ccc1b4;
+      }
+      
+      .colony-card > .timer {
+        display:none;
+      }
+      
+      .colony-card .active {
+        background-color: #e94e4a;
+      }
+      
+      .colony-card .active > .timer {
+        display: block-inline;
+      }
+      
+
   body(style='margin: 0px; padding: 0px; position: relative;')
     #content.columns
       #menu-bar.column.is-one-quarter: include ./components/menubar.jade

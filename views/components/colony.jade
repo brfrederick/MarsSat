@@ -1,6 +1,6 @@
 
 mixin colony-card(name)
-  .colony-card.box.is-fullwidth(id=name)
+  .colony-card.box.is-fullwidth
     .media(style="")  
       .media-content
         p.title(style="margin-bottom:5px;") Colony #{ name }
@@ -15,7 +15,7 @@ mixin colony-card(name)
       .columns
         .column.is-one-quarter
           p(style="display:inline") TIME: 
-          span.time-val(id=name + "timer") 3:14
+          span.time-val 3:14
         
         .column.is-three-quarters
-          progress.progress(id=name + "progress" value='15', max='100', style='margin-top: 3px')
+          progress.progress(value='15', max='100', style='margin-top: 3px')
