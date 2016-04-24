@@ -7,6 +7,8 @@ const makeTarget = (w, h) => {
   mat.shading = 1;
 
   const container = new Object3D();
+  container.blocks = [];
+
   let zOffset = 0;
   let yOffset = 0;
 
@@ -25,6 +27,7 @@ const makeTarget = (w, h) => {
       const mesh = new Mesh(geom, mat);
       mesh.position.set(2.2, 0, 0);
 
+      container.blocks.push(mesh);
       container.add(pivot);
       pivot.add(mesh);
     }
@@ -32,12 +35,34 @@ const makeTarget = (w, h) => {
 
   return container;
 };
+/*
+// m : mission
+const update = m => dt => {
+  if (m.numBlocks === 0) {
+    // remove UI, mission is complete
+  }
 
-export const makeMission = () => {
+  if (m.numBlocks !== m.prevBlocks) {
+    // update ui element!
+  }
+};
+
+const makeUI = numBlocks => {
+  const mission = {
+    numBlocks,
+    prevBlocks: numBlocks,
+  };
+
+  mission.update = update(mission);
+
+};
+*/
+export const makeMission = (rows = 2, columns = 5) => {
   // make game objects
-  const target = makeTarget(2, 5);
+  const target = makeTarget(rows, columns);
 
   // make ui elements
+  // makeUI(rows * columns);
 
   return target;
 };
