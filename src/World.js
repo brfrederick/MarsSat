@@ -40,6 +40,11 @@ export const addMission = mission => {
   missions.push(mission);
 };
 
+export const removeMission = mission => {
+  scene.remove(mission);
+  missions.remove(mission);
+};
+
 const setupStaticObjs = () => {
   const geometry = new THREE.SphereGeometry(5, 20, 20);
   const material = new THREE.MeshPhongMaterial({ color: 0xaa4444 });
@@ -88,6 +93,8 @@ export const resize = () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 };
 
+export const remove = obj => scene.remove(obj);
+
 export default {
   init,
   render,
@@ -98,4 +105,5 @@ export default {
   addMission,
   getIntersects,
   resize,
+  remove,
 };
