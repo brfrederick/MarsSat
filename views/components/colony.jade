@@ -1,0 +1,21 @@
+
+mixin colony-card(name)
+  .colony-card.box.is-fullwidth
+    .media(style="")  
+      .media-content
+        p.title(style="margin-bottom:5px;") Colony #{ name }
+        p.subtitle(style="font-size: 90%; display: inline;") IMAGING IN PROGRESS 
+        span 86%
+      .media-right
+        i.fa.fa-crosshairs
+    
+    .timer(style="height: 20px")
+      hr(style="margin-bottom:10px")
+      
+      .columns
+        .column.is-one-quarter
+          p(style="display:inline") TIME: 
+          span.time-val 3:14
+        
+        .column.is-three-quarters
+          progress.progress(value='15', max='100', style='margin-top: 3px')

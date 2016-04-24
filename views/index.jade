@@ -1,0 +1,101 @@
+doctype html
+html
+  head
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.23/css/bulma.min.css" rel="stylesheet")
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet")
+    link(href='https://fonts.googleapis.com/css?family=Roboto:400,700,300', rel='stylesheet', type='text/css')
+    style.
+      body {
+      height: 100vh;
+      overflow:hidden;
+      }
+      #menu-bar {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      min-width: 516px;
+      max-width: 516px;
+      height: 100vh;
+      background-color: #EAE0D4;
+      font-family: 'Roboto', sans-serif;
+      }
+      .menu-header {
+      height: 8vh;
+      }
+      .menu-container {
+      padding-left: 32px;
+      padding-right: 32px;
+      padding-top: 32px;
+      }
+      .is-red {
+      color: #CC3D41;
+      }
+      .is-black {
+      color: #303030;
+      }
+      .h1 {
+      font-size: 42px;
+      font-weight: 300;
+      margin-bottom: 48px;
+      }
+      .h2 {
+      font-size: 24px;
+      font-weight: 900;
+      }
+      hr {
+      border: 0;
+      height: 2px;
+      background-color: #303030;
+      opacity: 0.25;
+      margin-top: 8px;
+      margin-bottom: 24px;
+      }
+      .sat-button {
+      float: left;
+      width: 40px;
+      min-width: 40px;
+      max-width: 40px;
+      min-height: 40px;
+      max-height: 40px;
+      margin-right: 40px;
+      }
+      .no-sat {
+      border: 2px solid rgba(48,48,48,0.25);
+      border-radius: 50%;
+      }
+      .has-sat {
+      background-color: #303030;
+      border-radius: 50%;
+      }
+      .upgrade {
+      background-color: #745FAA;
+      color: #FFFFFF;
+      max-height: 40px;
+      font-size: 20px;
+      font-weight: 900;
+      border-radius: 25px;
+      padding-left: 31px;
+      padding-right: 31px;
+      padding-top: 6px;
+      padding-bottom: 14px;
+      float: right;
+      }
+      .upgrade:hover {
+      background-color: #644F9A;
+      }
+      .menu-area {
+      margin-top: 48px;
+      }
+      .mission-cards {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      }
+      .vh-10 { height: 10vh; }
+      .vh-50 { height: 50vh; }
+      .vh-60 { height: 60vh; }
+  body(style='margin: 0px; padding: 0px; position: relative;')
+    #content
+      #render_target(oncontextmenu='return false;')
+    
+    include ./components/menubar.jade
+    script(src='/build/js/app.js')

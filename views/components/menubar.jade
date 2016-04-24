@@ -1,0 +1,20 @@
+
+section#menu-bar.section
+  .menu-container.container
+    .menu-header: span.h1.is-red MarsSat
+    .menu-area.vh-10
+      span.h2 Satellite Garage
+      hr
+      #sat-1.sat-button.has-sat  
+      #sat-2.sat-button.no-sat  
+      #sat-3.sat-button.no-sat  
+      span.upgrade UPGRADE
+    div
+    .menu-area
+      .h2 Colony Missions
+      hr
+      include colony.jade
+      .mission-cards.vh-60(style="padding-right:10px; margin-right: -20px")
+        +colony-card('Alpha')
+        +colony-card('Beta')
+        +colony-card('Charlie')

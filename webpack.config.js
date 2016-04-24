@@ -1,5 +1,6 @@
 /* eslint-disable */
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -9,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve('build'),
     filename: 'js/[name].js',
-    publicPath: "/assets/",
+    publicPath: path.resolve('build'),
   },
 
   module: {
@@ -23,6 +24,21 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.jade$/,
+        include: [
+          path.resolve('views'),
+          path.resolve('views', 'components'),
+        ],
+        loader: "jade",
+      }
     ],
   },
+
+  plugins: [new HtmlWebpackPlugin({
+    title: 'MarsSat',
+    filename: 'index.html',
+    inject: false,
+    template: path.resolve('views', 'index.jade'),
+  })],
 }
