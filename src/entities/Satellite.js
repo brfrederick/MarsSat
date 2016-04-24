@@ -68,16 +68,13 @@ const makeTarget = radius => {
 
 export const getObjectiveCollisions = (sat, objectives) => {
   const satScan = new Vector3();
-  satScan.copy(sat.position);
-  satScan.localToWorld();
+  sat.localToWorld(satScan);
   satScan.multiplyScalar(2.2 / 3);
 
   const objPos = new Vector3();
   return R.filter(o => {
-    objPos.copy(o.position);
-    objPos.localToWorld();
-
-    return (satScan.distanceTo(objPos) < 0.3);
+    o.localToWorld(objPos);
+    return (satScan.distanceTo(objPos) < 1);
   }, objectives);
 };
 

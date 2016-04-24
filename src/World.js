@@ -82,6 +82,7 @@ export default {
   init,
   render,
   satellites,
+  missions,
   spinCamera,
   addSatellite,
   addMission,

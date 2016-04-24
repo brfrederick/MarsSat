@@ -2,13 +2,14 @@ import { Clock } from 'three';
 
 import World from './World';
 import Controls from './Controls';
-import { makeSatellite } from './entities/Satellite';
+import { makeSatellite, getObjectiveCollisions } from './entities/Satellite';
 import { makeMission } from './entities/Mission';
 
 const clock = new Clock();
 
 const update = dt => {
   World.satellites.map(s => s.update(dt));
+  //this brax getObjectiveCollisions(World.satellites[0].sat, World.missions[0].blocks);
 };
 
 const mainLoop = () => {
