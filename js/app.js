@@ -56228,7 +56228,7 @@
 	  var material = new _three2.default.MeshPhongMaterial({ color: 0xaa4444 });
 	  material.shading = 1;
 
-	  (0, _AssetManager.getAsset)('https://rawgithub.com/brfrederick/SpaceApps2016/gh-pages/assets/models/planet.json').then(function (asset) {
+	  (0, _AssetManager.getAsset)('/SpaceApps2016/assets/models/planet.json').then(function (asset) {
 	    asset.position.y -= 2.2;
 	    asset.scale.set(5.7, 5.7, 5.7);
 	    scene.add(asset);
@@ -56445,7 +56445,7 @@
 	* @param {HEX Value} color - color to tint the satellite
 	*/
 	var makeSat = function makeSat(radius) {
-	  return (0, _AssetManager.getAsset)('https://rawgithub.com/brfrederick/SpaceApps2016/gh-pages/assets/models/satellite.json').then(function (asset) {
+	  return (0, _AssetManager.getAsset)('/SpaceApps2016/assets/models/satellite.json').then(function (asset) {
 	    var sat = asset;
 	    sat.position.set(radius, 0, 0);
 	    sat.type = 'Satellite';

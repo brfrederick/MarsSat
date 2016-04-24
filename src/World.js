@@ -67,7 +67,7 @@ const setupStaticObjs = () => {
   const material = new THREE.MeshPhongMaterial({ color: 0xaa4444 });
   material.shading = 1;
 
-  getAsset('https://rawgithub.com/brfrederick/SpaceApps2016/gh-pages/assets/models/planet.json')
+  getAsset('/SpaceApps2016/assets/models/planet.json')
   .then(asset => {
     asset.position.y -= 2.2;
     asset.scale.set(5.7, 5.7, 5.7);

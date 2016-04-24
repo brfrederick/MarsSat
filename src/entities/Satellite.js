@@ -45,7 +45,7 @@ const update = s => dt => {
 * @param {HEX Value} color - color to tint the satellite
 */
 const makeSat = (radius) =>
-  getAsset('https://rawgithub.com/brfrederick/SpaceApps2016/gh-pages/assets/models/satellite.json')
+  getAsset('/SpaceApps2016/assets/models/satellite.json')
     .then(asset => {
       const sat = asset;
       sat.position.set(radius, 0, 0);
