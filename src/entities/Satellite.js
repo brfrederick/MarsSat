@@ -4,7 +4,8 @@ import World from '../World';
 import { getAsset } from '../AssetManager';
 
 const unselectedMat = new MeshLambertMaterial({ color: 0x0fffff, visible: false });
-const selectedMat = new MeshLambertMaterial({ color: 0x0fffff });
+const selectedMat = new MeshLambertMaterial({ color: 0x0fffff, transparent: true, opacity: 0.3 });
+
 unselectedMat.shading = 1;
 selectedMat.shading = 1;
 
