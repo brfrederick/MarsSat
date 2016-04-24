@@ -15,7 +15,7 @@ export const getObjectiveCollisions = (sat, objectives) => {
   const objPos = new Vector3();
   return (R.filter(o => {
     o.localToWorld(objPos);
-    return (satScan.distanceTo(objPos) < 1);
+    return (satScan.distanceTo(objPos) < 0.2);
   }, objectives));
 };
 
@@ -33,7 +33,7 @@ const update = s => dt => {
   s.parent.rotation.x = s.parent.rotTarget.x;
   s.parent.rotation.y = s.parent.rotTarget.y;
 
-  const hits = World.missions.map(m => getObjectiveCollisions(s, m.blocks));
+  const hits = World.missions.map(m => getObjectiveCollisions(s.sat, m.blocks));
   hits.forEach(blocks => blocks.map(block => block.remove()));
 };
 
@@ -99,6 +99,7 @@ export const makeSatellite = (radius, speed = 10, color = 0xffffff) => {
   orbit.add(sat);
   orbit.add(path);
   orbit.add(target);
+  orbit.sat = sat;
 
   orbit.data = {
     speed,
