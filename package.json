@@ -26,7 +26,11 @@
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-import": "^1.5.0",
+    "html-webpack-plugin": "^2.16.0",
+    "jade": "^1.11.0",
+    "jade-loader": "^0.8.0",
     "ramda": "^0.21.0",
+    "template-html-loader": "0.0.3",
     "three": "^0.76.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
