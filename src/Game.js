@@ -3,6 +3,7 @@ import { Clock } from 'three';
 import World from './World';
 import Controls from './Controls';
 import { makeSatellite } from './entities/Satellite';
+import { makeMission } from './entities/Mission';
 
 const clock = new Clock();
 
@@ -24,6 +25,9 @@ export const init = () => {
 
   const sat = makeSatellite(3, 10, 0xFFFFFF);
   World.addSatellite(sat);
+
+  const mission = makeMission();
+  World.addMission(mission);
 
   requestAnimationFrame(mainLoop);
 };

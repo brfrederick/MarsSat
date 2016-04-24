@@ -5,9 +5,11 @@ import { getAsset } from './AssetManager';
 
 const scene = new Scene();
 const renderer = new WebGLRenderer({ antialias: true });
-const satellites = [];
 const raycaster = new Raycaster();
 const mouseCastVector = new THREE.Vector2(0, 0);
+
+const satellites = [];
+const missions = [];
 
 let camera;
 let camHolder;
@@ -31,6 +33,11 @@ const makeCamera = () =>
 export const addSatellite = sat => {
   scene.add(sat);
   satellites.push(sat);
+};
+
+export const addMission = mission => {
+  scene.add(mission);
+  missions.push(mission);
 };
 
 const setupStaticObjs = () => {
@@ -77,5 +84,6 @@ export default {
   satellites,
   spinCamera,
   addSatellite,
+  addMission,
   getIntersects,
 };
