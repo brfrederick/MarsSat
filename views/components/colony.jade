@@ -13,9 +13,6 @@ mixin colony-card(name)
       hr(style="margin-bottom:10px")
       
       .columns
-        .column.is-one-quarter
-          p(style="display:inline") TIME: 
-          span.time-val(id=name + "timer") 3:14
         
-        .column.is-three-quarters
+        .column.is-fullwidth
           progress.progress(id=name + "progress" value='15', max='100', style='margin-top: 3px')
