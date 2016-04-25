@@ -56445,7 +56445,7 @@
 	* @param {HEX Value} color - color to tint the satellite
 	*/
 	var makeSat = function makeSat(radius) {
-	  return (0, _AssetManager.getAsset)('/MarsSat/assets/models/satellite.json').then(function (asset) {
+	  return (0, _AssetManager.getAsset)('/assets/models/satellite.json').then(function (asset) {
 	    var sat = asset;
 	    sat.position.set(radius, 0, 0);
 	    sat.type = 'Satellite';
