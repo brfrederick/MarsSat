@@ -23266,7 +23266,7 @@
 			//       32x32 pixel texture max  256 bones * 4 pixels = (32 * 32)
 			//       64x64 pixel texture max 1024 bones * 4 pixels = (64 * 64)
 
-			
+
 			var size = Math.sqrt( this.bones.length * 4 ); // 4 pixels needed for 1 matrix
 			size = THREE.Math.nextPowerOfTwo( Math.ceil( size ) );
 			size = Math.max( size, 4 );
@@ -32774,7 +32774,7 @@
 		}
 
 		function painterSortStable ( a, b ) {
-			
+
 			if ( a.renderOrder !== b.renderOrder ) {
 
 				return a.renderOrder - b.renderOrder;
@@ -36030,7 +36030,7 @@
 
 		var b3 = THREE.ShapeUtils.b3;
 
-		return new THREE.Vector2( 
+		return new THREE.Vector2(
 			b3( t, this.v0.x, this.v1.x, this.v2.x, this.v3.x ),
 			b3( t, this.v0.y, this.v1.y, this.v2.y, this.v3.y )
 		);
@@ -36041,7 +36041,7 @@
 
 		var tangentCubicBezier = THREE.CurveUtils.tangentCubicBezier;
 
-		return new THREE.Vector2( 
+		return new THREE.Vector2(
 			tangentCubicBezier( t, this.v0.x, this.v1.x, this.v2.x, this.v3.x ),
 			tangentCubicBezier( t, this.v0.y, this.v1.y, this.v2.y, this.v3.y )
 		).normalize();
@@ -36103,7 +36103,7 @@
 		this.aEndAngle = aEndAngle;
 
 		this.aClockwise = aClockwise;
-		
+
 		this.aRotation = aRotation || 0;
 
 	};
@@ -36129,7 +36129,7 @@
 			angle = this.aStartAngle + t * deltaAngle;
 
 		}
-		
+
 		var x = this.aX + this.xRadius * Math.cos( angle );
 		var y = this.aY + this.yRadius * Math.sin( angle );
 
@@ -36212,7 +36212,7 @@
 
 		function ( t ) {
 
-			var b2 = THREE.ShapeUtils.b2;		
+			var b2 = THREE.ShapeUtils.b2;
 
 			return new THREE.Vector3(
 				b2( t, this.v0.x, this.v1.x, this.v2.x ),
@@ -40170,7 +40170,7 @@
 			if ( headWidth === undefined ) headWidth = 0.2 * headLength;
 
 			this.position.copy( origin );
-			
+
 			this.line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color: color } ) );
 			this.line.matrixAutoUpdate = false;
 			this.add( this.line );
@@ -41712,19 +41712,19 @@
 
 	/* WEBPACK VAR INJECTION */(function(process, global, setImmediate) {/* @preserve
 	 * The MIT License (MIT)
-	 * 
+	 *
 	 * Copyright (c) 2013-2015 Petka Antonov
-	 * 
+	 *
 	 * Permission is hereby granted, free of charge, to any person obtaining a copy
 	 * of this software and associated documentation files (the "Software"), to deal
 	 * in the Software without restriction, including without limitation the rights
 	 * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 	 * copies of the Software, and to permit persons to whom the Software is
 	 * furnished to do so, subject to the following conditions:
-	 * 
+	 *
 	 * The above copyright notice and this permission notice shall be included in
 	 * all copies or substantial portions of the Software.
-	 * 
+	 *
 	 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -41732,7 +41732,7 @@
 	 * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 	 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	 * THE SOFTWARE.
-	 * 
+	 *
 	 */
 	/**
 	 * bluebird build version 3.3.5
@@ -45077,28 +45077,28 @@
 	_dereq_('./filter.js')(Promise, INTERNAL);
 	_dereq_('./each.js')(Promise, INTERNAL);
 	_dereq_('./any.js')(Promise);
-	                                                         
-	    util.toFastProperties(Promise);                                          
-	    util.toFastProperties(Promise.prototype);                                
-	    function fillTypes(value) {                                              
-	        var p = new Promise(INTERNAL);                                       
-	        p._fulfillmentHandler0 = value;                                      
-	        p._rejectionHandler0 = value;                                        
-	        p._promise0 = value;                                                 
-	        p._receiver0 = value;                                                
-	    }                                                                        
-	    // Complete slack tracking, opt out of field-type tracking and           
-	    // stabilize map                                                         
-	    fillTypes({a: 1});                                                       
-	    fillTypes({b: 2});                                                       
-	    fillTypes({c: 3});                                                       
-	    fillTypes(1);                                                            
-	    fillTypes(function(){});                                                 
-	    fillTypes(undefined);                                                    
-	    fillTypes(false);                                                        
-	    fillTypes(new Promise(INTERNAL));                                        
-	    debug.setBounds(Async.firstLineError, util.lastLineError);               
-	    return Promise;                                                          
+
+	    util.toFastProperties(Promise);
+	    util.toFastProperties(Promise.prototype);
+	    function fillTypes(value) {
+	        var p = new Promise(INTERNAL);
+	        p._fulfillmentHandler0 = value;
+	        p._rejectionHandler0 = value;
+	        p._promise0 = value;
+	        p._receiver0 = value;
+	    }
+	    // Complete slack tracking, opt out of field-type tracking and
+	    // stabilize map
+	    fillTypes({a: 1});
+	    fillTypes({b: 2});
+	    fillTypes({c: 3});
+	    fillTypes(1);
+	    fillTypes(function(){});
+	    fillTypes(undefined);
+	    fillTypes(false);
+	    fillTypes(new Promise(INTERNAL));
+	    debug.setBounds(Async.firstLineError, util.lastLineError);
+	    return Promise;
 
 	};
 
@@ -56228,7 +56228,7 @@
 	  var material = new _three2.default.MeshPhongMaterial({ color: 0xaa4444 });
 	  material.shading = 1;
 
-	  (0, _AssetManager.getAsset)('/MarsSat/assets/models/planet.json').then(function (asset) {
+	  (0, _AssetManager.getAsset)('/assets/models/planet.json').then(function (asset) {
 	    asset.position.y -= 2.2;
 	    asset.scale.set(5.7, 5.7, 5.7);
 	    scene.add(asset);
